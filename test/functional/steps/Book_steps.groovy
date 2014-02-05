@@ -1,7 +1,6 @@
 import cucumber.api.PendingException
 import data.Data
 import books.BookController
-import geb.Browser
 
 // Scenario State
 BookController bookController 
