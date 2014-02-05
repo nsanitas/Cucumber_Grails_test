@@ -4,7 +4,7 @@ import books.BookController
 import geb.Browser
 
 // Scenario State
-BookController bookController
+BookController bookController 
 
 this.metaClass.mixin (cucumber.api.groovy.EN)
 
