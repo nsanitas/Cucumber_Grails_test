@@ -5,12 +5,13 @@ import invoices.Invoice
 class Data {    
 	
 	static def invoices = [        
-		[amount: 12.2, merchant: "McDo"]    
+		[amount: 12, merchant: "McDo"],
+		[amount: 14, merchant: "McDo"]
 	]    
 	
-	static public def findByMerchant(String merchantToFind) {        
+	static public def findByAmount(int amountToFind) {        
 		invoices.find { invoice ->            
-			invoice.merchant == merchantToFind        
+			invoice.amount == amountToFind        
 		}    
 	}    
 	

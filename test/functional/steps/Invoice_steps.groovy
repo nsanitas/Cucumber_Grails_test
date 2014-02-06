@@ -3,39 +3,39 @@ import data.Data
 import invoices.InvoiceController
 
 // Scenario State
-BookController bookController 
+InvoiceController invoiceController 
 
 this.metaClass.mixin (cucumber.api.groovy.EN)
 
-Given(~'^I open the book tracker\$') { ->
+Given(~'^I open the POS app$') { ->
 	// nothing to do while we test 'under the skin'
 }
-When(~'^I add "([^"]*)"\$') { String bookTitle ->
-	bookController = new BookController ()
-	bookController.params << Data.findByTitle (bookTitle)
-	bookController.add ()
+When(~'^I add a EUR (\\d+) invoice$') { int amount ->
+	invoiceController = new InvoiceController ()
+	invoiceController.params << Data.findByAmount (amount)
+	invoiceController.add ()
 }
-Then(~'^I see "([^"]*)"s details\$') { String bookTitle ->
-	def expected = Data.findByTitle (bookTitle)
-	def actual = bookController.response.json
+Then(~'^I see (\\d+) invoice details$') { int amount ->
+	def expected = Data.findByAmount (amount)
+	def actual = invoiceController.response.json
 	assert actual.id
-	assert actual.title  == expected.title
-	assert actual.author == expected.author
+	assert actual.merchant  == expected.merchant
+	assert actual.amount == expected.amount
 }
 
-Given(~'^I have already added "([^"]*)"$') { String bookTitle ->
-	def bookService = appCtx.getBean ("bookService")
-	bookService.add (Data.findByTitle (bookTitle))
+Given(~'^I have already created a EUR (\\d+) invoice$') { int amount ->
+	def invoiceService = appCtx.getBean ("invoiceService")
+	invoiceService.add (Data.findByAmount (amount))
 }
-When(~'^I view the book list$') { ->
-	bookController = new BookController ()
-	bookController.all ()
+When(~'^I view the invoice list$') { ->
+	invoiceController = new InvoiceController ()
+	invoiceController.all ()
 }
-Then(~'^my book list contains "([^"]*)"$') { String bookTitle ->
-	def expected = Data.findByTitle (bookTitle)
-	def all = bookController.response.json
+Then(~'^my book list contains the EUR (\\d+) invoice$') { int amount ->
+	def expected = Data.findByAmount (amount)
+	def all = invoiceController.response.json
 	actual = all.getJSONObject (0)
 	assert actual.id
-	assert actual.title  == expected.title
-	assert actual.author == expected.author
+	assert actual.amount  == expected.amount
+	assert actual.merchant == expected.merchant
 }
