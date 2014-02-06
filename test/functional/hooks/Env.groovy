@@ -10,7 +10,7 @@ Before () {
 	scenarioInterceptor = new GrailsTestRequestEnvironmentInterceptor (appCtx)    
 	scenarioInterceptor.init ()
 	
-	Data.clearBooks ()
+	Data.clearInvoices ()
 }
 
 After () {    

@@ -1,21 +1,21 @@
 package data
 
-import books.Book
+import invoices.Invoice
 
 class Data {    
 	
-	static def books = [        
-		[title: "Specification by Example", author: "Gojko Adzic"]    
+	static def invoices = [        
+		[amount: 12.2, merchant: "McDo"]    
 	]    
 	
-	static public def findByTitle (String titleToFind) {        
-		books.find { book ->            
-			book.title == titleToFind        
+	static public def findByMerchant(String merchantToFind) {        
+		invoices.find { invoice ->            
+			invoice.merchant == merchantToFind        
 		}    
 	}    
 	
-	static void clearBooks () {        
-		Book.findAll()*.delete (flush: true)    
+	static void clearInvoices () {        
+		Invoice.findAll()*.delete (flush: true)    
 	} 
 
 }

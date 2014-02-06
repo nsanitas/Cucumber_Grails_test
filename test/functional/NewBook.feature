@@ -5,5 +5,10 @@ Feature: new book entry
 	
 Scenario: new book   
 	Given I open the book tracker   
-	When I add "Specification by Example"    
-	Then I see "Specification by Example"s details
+	When I add "<book_name>"    
+	Then I see "<book_name>"s details
+	
+Examples:
+| book_name					|
+| Martine fait du Grails	|
+| Martine aime Cucumber		|
