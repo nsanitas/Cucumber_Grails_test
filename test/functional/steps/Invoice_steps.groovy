@@ -39,3 +39,5 @@ Then(~'^my book list contains the EUR (\\d+) invoice$') { int amount ->
 	assert actual.amount  == expected.amount
 	assert actual.merchant == expected.merchant
 }
+
+

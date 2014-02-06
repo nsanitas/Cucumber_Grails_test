@@ -5,10 +5,10 @@ Feature: list my invoices
 
   Scenario Outline: list existing invoices
     Given I have already created a EUR <amount> invoice
-    When I view the invoice list
+    When I view the invoice list 
     Then my book list contains the EUR <amount> invoice
 
     Examples: 
-      | amount |
-      | 12     |
-      | 14	   |
+      | amount | 
+      | 12     | 
+      | 14     | 

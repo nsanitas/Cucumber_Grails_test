@@ -1,4 +1,4 @@
-Feature: new book entry
+Feature: new invoice 
   As a merchant
   I want to be able to create invoices    
   so that my customer could pay with FLASHiZ
